@@ -1,0 +1,13 @@
+# dependencies
+node_modules/
+
+# output from webpack
+dist/
+
+# not sure what this is for.  Copied it from other units
+.vscode/
+
+# for storing api key
+.env
+
+notes.md
