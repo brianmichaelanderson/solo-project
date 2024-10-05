@@ -14,7 +14,7 @@ const NumberLookup = () => {
     // future enhancement:  Confirm only numbers are entered and no more than 11 digits
     // auto enter/add leading 1 to every number entry if only 10 digits entered.
     // confirm first number is a 1 if 11 digits are entered.
-    const handleSubmit = () => {
+    const handleCurrentSubmit = () => {
         // alert(`User Input: ${inputData}`); // place holder.  Update/Replace with fetch to api
         // Sending GET request to the API.  Needs to go to Node Express full URL for the api route/router.
         fetch(`http://localhost:3000/api/lookup?number=${inputData}`, {
@@ -55,7 +55,7 @@ const NumberLookup = () => {
             onChange={handleInputChange} //Capture user input
             placeholder="enter 1 + 10 digits"
             />
-            <button onClick={handleSubmit}>Submit</button><br />
+            <button onClick={handleCurrentSubmit}>Submit</button><br />
             {apiData && <div><b>Current Lookup Result: </b><br /> <LookupResponse apiData={apiData}/> </div>}     {/* // render LookupResponse component here destructuring out apiData properties within the LookupResponse component */}
             {error && <div style={{ color: 'red'}}>{error}</div>}
         </div>

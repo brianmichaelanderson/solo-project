@@ -9,6 +9,7 @@ const App = () => {
   const [pastLookups, setPastLookups] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  //refactor to start with a login page means this shouldn't happen until AFTER
   useEffect(() => {
     fetch('http://localhost:3000/api')
       .then((res) => res.json())
@@ -31,13 +32,23 @@ const App = () => {
     return <div>Loading...</div>;
   }
 
-    const mappedLookups = pastLookups.results.map((eachLookup, idx) => (<PastLookups key={idx} eachLookup={eachLookup}/>));
+  const handlePastSubmit = 5; // giving a value to stop it from erroring for now
+
+  const mappedLookups = pastLookups.results.map((eachLookup, idx) => (
+    <PastLookups key={idx} eachLookup={eachLookup} />
+  ));
 
   //render SPA components
   return (
     <div>
       <div>Enter 1+10 digit phone number</div>
       <NumberLookup />
+      <b />
+      <h3>
+        Click to load past lookups --&gt;{' '}
+        <button onClick={handlePastSubmit}>Past Lookups</button>
+        <br />
+      </h3>
       <h3>Past Lookup Results</h3>
       {/* <PastLookups pastLookup={pastLookups.results[0]} /> */}
       {mappedLookups}
@@ -46,6 +57,8 @@ const App = () => {
 };
 
 export default App;
+//   {apiData && <div><b>Current Lookup Result: </b><br /> <LookupResponse apiData={apiData}/> </div>}     {/* // render LookupResponse component here destructuring out apiData properties within the LookupResponse component */}
+//   {error && <div style={{ color: 'red'}}>{error}</div>}
 
 {
   /* <h3>Lookup Response</h3>    moved out of App render
